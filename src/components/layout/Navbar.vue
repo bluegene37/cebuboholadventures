@@ -11,14 +11,20 @@
           @click="closeMobileMenu"
         >
           <div class="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <!-- Gene - Oct 1, 2026: Replaced generic placeholder SVG with original Cebu Bohol Adventure palm tree logo from WordPress backup -->
+            <img src="/images/logo.png" alt="Cebu Bohol Adventure Logo" class="w-11 h-11 object-contain drop-shadow-sm" />
+            <!--
+            // Gene - Oct 1, 2026: Previous generic placeholder SVG preserved below
             <svg class="w-10 h-10 drop-shadow-sm" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="36" height="36" rx="10" fill="#0284c7" />
               <path d="M6 24C10 18 15 18 19 22C23 26 27 22 30 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
               <circle cx="23" cy="11.5" r="4.5" fill="#ea580c" />
               <path d="M8 27C12 23 16 23 20 25.5C23 27.5 26 26.5 28 25" stroke="#e0f2fe" stroke-width="1.75" stroke-linecap="round" />
             </svg>
+            -->
           </div>
           <div class="flex flex-col">
+
             <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-none group-hover:text-ocean-600 transition-colors">
               Cebu Bohol <span class="text-ocean-600">Adventure</span>
             </span>

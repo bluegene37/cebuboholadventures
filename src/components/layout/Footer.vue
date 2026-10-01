@@ -10,13 +10,19 @@
         <!-- Column 1: Brand Overview & DOT Trust Badge -->
         <div class="flex flex-col gap-4">
           <RouterLink to="/" class="flex items-center gap-3 group w-fit">
+            <!-- Gene - Oct 1, 2026: Replaced generic placeholder SVG with original Cebu Bohol Adventure palm tree logo from WordPress backup -->
+            <img src="/images/logo.png" alt="Cebu Bohol Adventure Logo" class="w-10 h-10 object-contain drop-shadow" />
+            <!--
+            // Gene - Oct 1, 2026: Previous generic placeholder SVG preserved below
             <svg class="w-9 h-9" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="36" height="36" rx="10" fill="#0284c7" />
               <path d="M6 24C10 18 15 18 19 22C23 26 27 22 30 19" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
               <circle cx="23" cy="11.5" r="4.5" fill="#ea580c" />
               <path d="M8 27C12 23 16 23 20 25.5C23 27.5 26 26.5 28 25" stroke="#e0f2fe" stroke-width="1.75" stroke-linecap="round" />
             </svg>
+            -->
             <div class="flex flex-col">
+
               <span class="text-lg font-extrabold text-white tracking-tight">
                 Cebu Bohol <span class="text-ocean-400">Adventure</span>
               </span>
