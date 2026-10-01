@@ -1,9 +1,12 @@
 <template>
   <!-- Gene - Oct 1, 2026: HomeView component featuring responsive hero banner, signature tours showcase, top destination explorer, trust guarantees, verified reviews, and WhatsApp CTA. -->
   <div class="space-y-16 sm:space-y-24 pb-16">
-    <!-- HERO SECTION -->
+    <!-- Gene - Oct 1, 2026: Replaced static hero with Sydney-style full-width hero slider using authentic images and copy from WordPress backup. Previous static hero section preserved commented out below. -->
+    <HeroSlider />
+
+    <!--
+    // Gene - Oct 1, 2026: Previous static hero section preserved below:
     <section class="relative min-h-[580px] lg:min-h-[680px] flex items-center justify-center overflow-hidden bg-slate-950">
-      <!-- Background Image with Parallax-like scale -->
       <div class="absolute inset-0 z-0">
         <img
           src="/images/hero/cebu-hero.jpg"
@@ -11,14 +14,11 @@
           class="w-full h-full object-cover object-center filter brightness-90 transform scale-105 transition-transform duration-1000"
           loading="eager"
         />
-        <!-- Multi-layer Gradients for Maximum Legibility -->
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-black/40"></div>
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-transparent to-slate-950/40"></div>
       </div>
 
-      <!-- Hero Content Container -->
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center">
-        <!-- Trust Pill -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-semibold mb-6 shadow-sm">
           <ShieldCheck class="w-4 h-4 text-emerald-400" />
           <span>DOT-Accredited Operator</span>
@@ -26,7 +26,6 @@
           <span class="text-ocean-200">100% Private Charters</span>
         </div>
 
-        <!-- Main Headline -->
         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight max-w-4xl leading-[1.15]">
           Unforgettable Private Adventures in
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-ocean-300 via-sky-200 to-amber-200">
@@ -34,12 +33,10 @@
           </span>
         </h1>
 
-        <!-- Subheading -->
         <p class="mt-5 text-base sm:text-lg lg:text-xl text-slate-200 max-w-2xl font-normal leading-relaxed">
           Swim with gentle whale sharks in Oslob, plunge into turquoise canyons in Kawasan, and marvel at Bohol's Chocolate Hills—all in modern private air-conditioned comfort.
         </p>
 
-        <!-- CTA Action Buttons -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           <RouterLink
             to="/tours"
@@ -59,7 +56,6 @@
           </button>
         </div>
 
-        <!-- Trust Points Row -->
         <div class="mt-12 pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-4xl text-left w-full">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-ocean-300 shrink-0">
@@ -103,6 +99,7 @@
         </div>
       </div>
     </section>
+    -->
 
     <!-- SIGNATURE FEATURED TOURS SECTION -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -408,6 +405,8 @@ import {
   ChevronRight
 } from 'lucide-vue-next'
 import TourCard from '../components/tours/TourCard.vue'
+// Gene - Oct 1, 2026: Imported HeroSlider reproducing authentic WordPress Sydney theme slider
+import HeroSlider from '../components/home/HeroSlider.vue'
 import { useTours } from '../composables/useTours'
 import { useBookingModal } from '../composables/useBookingModal'
 import { destinations } from '../data/destinations'

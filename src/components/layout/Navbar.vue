@@ -36,7 +36,8 @@
           </div>
         </RouterLink>
 
-        <!-- Desktop Navigation Links -->
+        <!--
+        // Gene - Oct 1, 2026: Previous 4-link desktop navigation preserved below:
         <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Main Navigation">
           <RouterLink
             v-for="link in navLinks"
@@ -47,6 +48,62 @@
           >
             {{ link.name }}
           </RouterLink>
+        </nav>
+        -->
+
+        <!-- Gene - Oct 1, 2026: Restored all 8 authentic WordPress navigation items with responsive desktop view, dropdown for medium screens, and full mobile drawer. -->
+        <nav class="hidden md:flex items-center gap-0.5 lg:gap-1" aria-label="Main Navigation">
+          <RouterLink
+            v-for="link in primaryNavLinks"
+            :key="link.to"
+            :to="link.to"
+            class="px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-ocean-600 hover:bg-ocean-50/80 transition-all duration-150 whitespace-nowrap"
+            active-class="text-ocean-600 font-bold bg-ocean-50"
+          >
+            {{ link.name }}
+          </RouterLink>
+
+          <!-- Displayed directly on XL screens -->
+          <template v-for="link in secondaryNavLinks" :key="link.to">
+            <RouterLink
+              :to="link.to"
+              class="hidden xl:inline-flex px-2.5 xl:px-3 py-2 rounded-lg text-xs xl:text-sm font-semibold text-slate-700 hover:text-ocean-600 hover:bg-ocean-50/80 transition-all duration-150 whitespace-nowrap"
+              active-class="text-ocean-600 font-bold bg-ocean-50"
+            >
+              {{ link.name }}
+            </RouterLink>
+          </template>
+
+          <!-- 'More' Dropdown for MD/LG screens -->
+          <div class="relative xl:hidden" @mouseenter="isMoreOpen = true" @mouseleave="isMoreOpen = false">
+            <button
+              type="button"
+              class="px-2.5 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-ocean-600 hover:bg-ocean-50/80 transition-all flex items-center gap-1"
+              :class="{ 'text-ocean-600 bg-ocean-50': isMoreOpen }"
+              :aria-expanded="isMoreOpen"
+              @click="isMoreOpen = !isMoreOpen"
+            >
+              <span>More</span>
+              <ChevronDown class="w-3.5 h-3.5 transition-transform duration-200" :class="{ 'rotate-180': isMoreOpen }" />
+            </button>
+
+            <div
+              v-if="isMoreOpen"
+              class="absolute right-0 top-full mt-1 w-48 bg-white rounded-2xl border border-slate-200 shadow-xl py-2 z-50"
+            >
+              <RouterLink
+                v-for="link in secondaryNavLinks"
+                :key="link.to"
+                :to="link.to"
+                class="flex items-center gap-2.5 px-4 py-2 text-xs font-semibold text-slate-700 hover:text-ocean-600 hover:bg-ocean-50 transition-colors"
+                active-class="text-ocean-600 bg-ocean-50/70 font-bold"
+                @click="isMoreOpen = false"
+              >
+                <component :is="link.icon" class="w-3.5 h-3.5 text-slate-400" />
+                <span>{{ link.name }}</span>
+              </RouterLink>
+            </div>
+          </div>
         </nav>
 
         <!-- Right Action Items (Desktop) -->
@@ -103,6 +160,8 @@
         v-if="isMobileMenuOpen"
         class="md:hidden border-t border-slate-200 bg-white/98 backdrop-blur-lg px-4 pt-3 pb-6 shadow-xl"
       >
+        <!--
+        // Gene - Oct 1, 2026: Previous 4-link mobile navigation preserved below:
         <nav class="flex flex-col gap-1 pb-4" aria-label="Mobile Navigation">
           <RouterLink
             v-for="link in navLinks"
@@ -114,6 +173,25 @@
           >
             <span>{{ link.name }}</span>
             <Compass class="w-4 h-4 text-slate-400" />
+          </RouterLink>
+        </nav>
+        -->
+
+        <!-- Gene - Oct 1, 2026: Restored all 8 authentic WordPress navigation items with icons in mobile drawer -->
+        <nav class="flex flex-col gap-1 pb-4 max-h-[60vh] overflow-y-auto" aria-label="Mobile Navigation">
+          <RouterLink
+            v-for="link in allNavLinks"
+            :key="link.to"
+            :to="link.to"
+            class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-800 hover:text-ocean-600 hover:bg-ocean-50 transition-colors"
+            active-class="text-ocean-600 font-bold bg-ocean-50"
+            @click="closeMobileMenu"
+          >
+            <div class="flex items-center gap-3">
+              <component :is="link.icon" class="w-4 h-4 text-ocean-600" />
+              <span>{{ link.name }}</span>
+            </div>
+            <span class="text-xs text-slate-400 font-normal">→</span>
           </RouterLink>
         </nav>
 
@@ -130,12 +208,12 @@
 
           <!-- Direct Hotline Call Button -->
           <a
-            href="tel:+639171234567"
+            href="tel:+639175207191"
             class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-200 text-slate-700 font-medium text-sm hover:bg-slate-50 transition-colors"
             @click="closeMobileMenu"
           >
             <Phone class="w-4 h-4 text-ocean-600" />
-            <span>Call Hotline: +63 917 123 4567</span>
+            <span>Call Hotline: +63 917 520 7191</span>
           </a>
         </div>
       </div>
@@ -147,18 +225,61 @@
 // Gene - Oct 1, 2026: Responsive navigation bar component with glassmorphic styling, desktop links, mobile drawer, and booking modal trigger.
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { Compass, Menu, X, Phone, Calendar } from 'lucide-vue-next'
+import {
+  Compass,
+  Menu,
+  X,
+  Phone,
+  Calendar,
+  ChevronDown,
+  Home,
+  Sliders,
+  CreditCard,
+  BookOpen,
+  MapPin,
+  Users
+} from 'lucide-vue-next'
 import { useBookingModal } from '../../composables/useBookingModal'
 
 const { openBookingModal } = useBookingModal()
 
 const isMobileMenuOpen = ref(false)
+const isMoreOpen = ref(false)
 
+/*
+// Gene - Oct 1, 2026: Previous 4 navLinks preserved below:
 const navLinks = [
   { name: 'Home', to: '/' },
   { name: 'All Tours', to: '/tours' },
   { name: 'About Us', to: '/about' },
   { name: 'Contact', to: '/contact' }
+]
+*/
+
+// Gene - Oct 1, 2026: All 8 authentic WordPress menu items from backup
+export interface NavItem {
+  name: string
+  to: string
+  icon: any
+}
+
+const primaryNavLinks: NavItem[] = [
+  { name: 'Home', to: '/', icon: Home },
+  { name: 'Rates & Packages', to: '/tours', icon: Compass },
+  { name: 'Customize Itinerary', to: '/customize-itinerary', icon: Sliders }
+]
+
+const secondaryNavLinks: NavItem[] = [
+  { name: 'Pay Here', to: '/payment', icon: CreditCard },
+  { name: 'Blog', to: '/blog', icon: BookOpen },
+  { name: 'Travel Helps', to: '/destinations', icon: MapPin },
+  { name: 'About', to: '/about', icon: Users },
+  { name: 'Contact', to: '/contact', icon: Phone }
+]
+
+const allNavLinks: NavItem[] = [
+  ...primaryNavLinks,
+  ...secondaryNavLinks
 ]
 
 function toggleMobileMenu() {
@@ -167,6 +288,7 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
   isMobileMenuOpen.value = false
+  isMoreOpen.value = false
 }
 
 function handleMobileBookNow() {

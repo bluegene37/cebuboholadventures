@@ -7,17 +7,27 @@ import TourDetailView from '../src/views/TourDetailView.vue'
 import AboutView from '../src/views/AboutView.vue'
 import ContactView from '../src/views/ContactView.vue'
 import NotFoundView from '../src/views/NotFoundView.vue'
+// Gene - Oct 1, 2026: Imported new restored views, HeroSlider, and blogPosts for unit test verification
+import CustomizeItineraryView from '../src/views/CustomizeItineraryView.vue'
+import PaymentView from '../src/views/PaymentView.vue'
+import BlogView from '../src/views/BlogView.vue'
+import DestinationsView from '../src/views/DestinationsView.vue'
+import HeroSlider from '../src/components/home/HeroSlider.vue'
+import { blogPosts } from '../src/data/blog'
 import { useTours } from '../src/composables/useTours'
 import { destinations } from '../src/data/destinations'
 import { reviews } from '../src/data/reviews'
 import { tourPackages } from '../src/data/tours'
 
+// Gene - Oct 1, 2026: Updated router tests to verify all 10 routes including authentic WordPress restored pages
 describe('Vue Router Configuration', () => {
   it('defines the router instance and routes correctly', () => {
     expect(router).toBeDefined()
     expect(routes).toBeDefined()
     expect(Array.isArray(routes)).toBe(true)
-    expect(routes.length).toBe(6)
+    // Gene - Oct 1, 2026: Previous 6 routes assertion preserved below:
+    // expect(routes.length).toBe(6)
+    expect(routes.length).toBe(10)
   })
 
   it('contains expected route paths and route names', () => {
@@ -25,6 +35,10 @@ describe('Vue Router Configuration', () => {
     expect(paths).toContain('/')
     expect(paths).toContain('/tours')
     expect(paths).toContain('/tours/:slug')
+    expect(paths).toContain('/customize-itinerary')
+    expect(paths).toContain('/payment')
+    expect(paths).toContain('/blog')
+    expect(paths).toContain('/destinations')
     expect(paths).toContain('/about')
     expect(paths).toContain('/contact')
     expect(paths).toContain('/:pathMatch(.*)*')
@@ -33,6 +47,10 @@ describe('Vue Router Configuration', () => {
     expect(names).toContain('home')
     expect(names).toContain('tours')
     expect(names).toContain('tour-detail')
+    expect(names).toContain('customize-itinerary')
+    expect(names).toContain('payment')
+    expect(names).toContain('blog')
+    expect(names).toContain('destinations')
     expect(names).toContain('about')
     expect(names).toContain('contact')
     expect(names).toContain('not-found')
@@ -102,6 +120,32 @@ describe('View Components Exports', () => {
     expect(typeof NotFoundView).toBe('object')
     expect(NotFoundView.__name || NotFoundView.name).toBe('NotFoundView')
   })
+
+  // Gene - Oct 1, 2026: Verify export of restored views and HeroSlider component
+  it('CustomizeItineraryView exports a valid Vue component object', () => {
+    expect(CustomizeItineraryView).toBeDefined()
+    expect(typeof CustomizeItineraryView).toBe('object')
+  })
+
+  it('PaymentView exports a valid Vue component object', () => {
+    expect(PaymentView).toBeDefined()
+    expect(typeof PaymentView).toBe('object')
+  })
+
+  it('BlogView exports a valid Vue component object', () => {
+    expect(BlogView).toBeDefined()
+    expect(typeof BlogView).toBe('object')
+  })
+
+  it('DestinationsView exports a valid Vue component object', () => {
+    expect(DestinationsView).toBeDefined()
+    expect(typeof DestinationsView).toBe('object')
+  })
+
+  it('HeroSlider exports a valid Vue component object', () => {
+    expect(HeroSlider).toBeDefined()
+    expect(typeof HeroSlider).toBe('object')
+  })
 })
 
 describe('View Data & Logic Integration', () => {
@@ -155,5 +199,18 @@ describe('View Data & Logic Integration', () => {
     const related = getRelatedTours(firstTour.category, firstTour.id, 3)
     expect(related.length).toBeLessThanOrEqual(3)
     expect(related.some(t => t.id === firstTour.id)).toBe(false)
+  })
+
+  // Gene - Oct 1, 2026: Verify authentic blog posts data integrity from WordPress database
+  it('blogPosts data contains required fields and authentic articles', () => {
+    expect(blogPosts.length).toBeGreaterThanOrEqual(5)
+    for (const post of blogPosts) {
+      expect(post.id).toBeGreaterThan(0)
+      expect(post.title).toBeTruthy()
+      expect(post.slug).toBeTruthy()
+      expect(post.category).toBeTruthy()
+      expect(post.excerpt).toBeTruthy()
+      expect(post.content).toBeTruthy()
+    }
   })
 })

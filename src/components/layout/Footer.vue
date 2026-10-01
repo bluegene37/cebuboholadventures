@@ -187,6 +187,8 @@
           <span>&copy; 2026 Cebu Bohol Adventure. All rights reserved.</span>
         </div>
 
+        <!--
+        // Gene - Oct 1, 2026: Previous footer bottom links preserved below:
         <div class="flex items-center gap-6">
           <RouterLink to="/about" class="hover:text-slate-300 transition-colors">
             About Us
@@ -196,6 +198,35 @@
           </RouterLink>
           <RouterLink to="/contact" class="hover:text-slate-300 transition-colors">
             Contact & FAQs
+          </RouterLink>
+        </div>
+        -->
+
+        <!-- Gene - Oct 1, 2026: Restored authentic WordPress navigation links in footer -->
+        <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <RouterLink to="/" class="hover:text-slate-300 transition-colors">
+            Home
+          </RouterLink>
+          <RouterLink to="/tours" class="hover:text-slate-300 transition-colors">
+            Rates & Packages
+          </RouterLink>
+          <RouterLink to="/customize-itinerary" class="hover:text-slate-300 transition-colors">
+            Customize Itinerary
+          </RouterLink>
+          <RouterLink to="/payment" class="hover:text-slate-300 transition-colors">
+            Pay Here
+          </RouterLink>
+          <RouterLink to="/blog" class="hover:text-slate-300 transition-colors">
+            Blog
+          </RouterLink>
+          <RouterLink to="/destinations" class="hover:text-slate-300 transition-colors">
+            Travel Helps
+          </RouterLink>
+          <RouterLink to="/about" class="hover:text-slate-300 transition-colors">
+            About Us
+          </RouterLink>
+          <RouterLink to="/contact" class="hover:text-slate-300 transition-colors">
+            Contact
           </RouterLink>
         </div>
       </div>

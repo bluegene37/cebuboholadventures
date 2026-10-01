@@ -27,6 +27,8 @@ lerna-debug.log*
 
 # Original WordPress Backup (keep strictly local)
 BackUp/
+All In One WP Migration and Backup/
+*.wpress
 
 # AI Tool Directories & Caches
 .agents/
